@@ -5,7 +5,7 @@ function App() {
   const downloadPDF = async () => {
 
     try {
-      let apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
+      var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
       let getWHeadersConfig = { responseType: "arraybuffer" }
       let response = await axios.get(apiURL, getWHeadersConfig)
       if (response && response.data) {
@@ -37,6 +37,8 @@ function App() {
           window.URL.revokeObjectURL(url)
         }
       }
+
+      console.log("##### the code to reproduce crash.")
 
     } catch (error) {
       window.open(apiURL)
