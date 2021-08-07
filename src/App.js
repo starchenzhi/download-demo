@@ -39,7 +39,9 @@ function App() {
       }
 
     } catch (error) {
-      console.log("GET PDF consents API Failed!", error.message);
+      window.open(apiURL)
+      alert(error.message)
+      // console.log("GET PDF consents API Failed!", error.message);
     }
 
 
