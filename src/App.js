@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
 
 function App() {
+
+  const downloadPDF = async () => {
+
+    try {
+      let apiURL = "http://www.africau.edu/images/default/sample.pdf";
+      let getWHeadersConfig = { responseType: "arraybuffer" }
+      let response = await axios.get(apiURL, getWHeadersConfig)
+      if (response && response.data) {
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          const urlIE = new Blob([response.data], { type: "application/pdf" })
+          window.navigator.msSaveOrOpenBlob(urlIE, "Consent.pdf")
+        } else if (/iP(hone|od|ad)/.test(navigator.platform)) {
+          const blob = new Blob([response.data], { type: "application/pdf" })
+          const url = window.URL.createObjectURL(blob)
+          window.open(url)
+        } else {
+          const a = document.createElement("a");
+          const contentDisposition = "content-disposition"
+          document.body.appendChild(a)
+          a.style = "display: none"
+          const blob = new Blob([response.data], { type: "application/pdf" })
+          const url = window.URL.createObjectURL(blob)
+          a.href = url
+          if (response.headers && response.headers[contentDisposition]) {
+            let downloadName = response.headers[contentDisposition]
+            const searchString = "filename="
+            downloadName = downloadName.substring(downloadName.length, downloadName.indexOf(searchString) + searchString.length)
+            a.download = downloadName
+          } else {
+            a.download = "Consent.pdf"
+          }
+
+          a.click()
+          window.URL.revokeObjectURL(url)
+        }
+      }
+
+    } catch (error) {
+      console.log("GET PDF consents API Failed!", error.message);
+    }
+
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div onClick={downloadPDF}>
+        Download Authorization Form
+      </div>
+    </>
   );
 }
 
