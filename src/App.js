@@ -5,7 +5,7 @@ function App() {
   const downloadPDF = async () => {
 
     try {
-      let apiURL = "http://www.africau.edu/images/default/sample.pdf";
+      let apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
       let getWHeadersConfig = { responseType: "arraybuffer" }
       let response = await axios.get(apiURL, getWHeadersConfig)
       if (response && response.data) {
