@@ -13,26 +13,27 @@ function App() {
     try {
       var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
 
-      // the page is opened by Web View.
-      if (/wv/.test(navigator.userAgent)) {
-        window.open(apiURL);
-        setActionType("open in a new window.")
-        return;
-      }
-
       let getWHeadersConfig = { responseType: "arraybuffer" }
       let response = await axios.get(apiURL, getWHeadersConfig)
       if (response && response.data) {
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-          const urlIE = new Blob([response.data], { type: "application/pdf" })
-          window.navigator.msSaveOrOpenBlob(urlIE, "Consent.pdf")
-          setActionType("msSaveOrOpenBlob")
+
+        // the page is opened by Web View.
+        if (/wv/.test(navigator.userAgent)) {
+          window.open(apiURL);
+          setActionType("open in a new window.")
+          return;
         }
-        // else if (/iP(hone|od|ad)/.test(navigator.platform)) {
-        //   const blob = new Blob([response.data], { type: "application/pdf" })
-        //   const url = window.URL.createObjectURL(blob)
-        //   window.open(url)
-        // } 
+
+        // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        //   const urlIE = new Blob([response.data], { type: "application/pdf" })
+        //   window.navigator.msSaveOrOpenBlob(urlIE, "Consent.pdf")
+        //   setActionType("msSaveOrOpenBlob")
+        // }
+        // // else if (/iP(hone|od|ad)/.test(navigator.platform)) {
+        // //   const blob = new Blob([response.data], { type: "application/pdf" })
+        // //   const url = window.URL.createObjectURL(blob)
+        // //   window.open(url)
+        // // } 
 
         else {
           setActionType("Download with blob.")
