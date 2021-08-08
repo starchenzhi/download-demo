@@ -1,8 +1,11 @@
 import axios from "axios";
+import { useState } from "react";
 import "./App.css";
 
 
 function App() {
+
+  const [errorInfo, setErrorInfo] = useState('');
 
   const downloadPDF = async () => {
     try {
@@ -50,6 +53,7 @@ function App() {
 
     } catch (error) {
       console.log("GET PDF consents API Failed!", error.message);
+      setErrorInfo(error.message);
     }
 
 
@@ -61,6 +65,10 @@ function App() {
         Download Authorization Form
       </div>
       {window.navigator.userAgent}
+
+      <div id="errorInfo">
+        Error:  {errorInfo}
+      </div>
     </>
   );
 }

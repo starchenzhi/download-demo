@@ -5,3 +5,8 @@
   padding: 5px;
   border-radius: 3px;
 }
+
+#errorInfo {
+  margin-top: 10px;
+  color: red;
+}
