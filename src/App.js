@@ -1,8 +1,11 @@
 import axios from "axios";
+import * as Sentry from "@sentry/react";
 
 function App() {
 
   const downloadPDF = async () => {
+
+    Sentry.captureMessage(window.navigator.userAgent);
 
     try {
       var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
@@ -41,9 +44,7 @@ function App() {
       console.log("##### the code to reproduce crash.")
 
     } catch (error) {
-      window.open(apiURL)
-      alert(error.message)
-      // console.log("GET PDF consents API Failed!", error.message);
+      console.log("GET PDF consents API Failed!", error.message);
     }
 
 
