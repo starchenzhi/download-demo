@@ -1,18 +1,8 @@
 import axios from "axios";
-import * as Sentry from "@sentry/react";
 import "./App.css";
-import { useEffect } from "react";
+
 
 function App() {
-
-  useEffect(() => {
-    try {
-      Sentry.captureMessage(window.navigator.userAgent);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, []);
-
 
   const downloadPDF = async () => {
     try {
@@ -63,6 +53,7 @@ function App() {
       <div onClick={downloadPDF} className="button">
         Download Authorization Form
       </div>
+      {window.navigator.userAgent}
     </>
   );
 }
