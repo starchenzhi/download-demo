@@ -1,12 +1,20 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
+import "./App.css";
+import { useEffect } from "react";
 
 function App() {
 
+  useEffect(() => {
+    try {
+      Sentry.captureMessage(window.navigator.userAgent);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
+
+
   const downloadPDF = async () => {
-
-    Sentry.captureMessage(window.navigator.userAgent);
-
     try {
       var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
       let getWHeadersConfig = { responseType: "arraybuffer" }
@@ -52,7 +60,7 @@ function App() {
 
   return (
     <>
-      <div onClick={downloadPDF}>
+      <div onClick={downloadPDF} className="button">
         Download Authorization Form
       </div>
     </>
