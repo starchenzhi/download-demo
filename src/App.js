@@ -6,6 +6,7 @@ import "./App.css";
 function App() {
 
   const [errorInfo, setErrorInfo] = useState('');
+  const [stackInfo, setStackInfo] = useState('');
 
   const downloadPDF = async () => {
     try {
@@ -54,6 +55,7 @@ function App() {
     } catch (error) {
       console.log("GET PDF consents API Failed!", error.message);
       setErrorInfo(error.message);
+      setStackInfo(error.toString());
     }
 
 
@@ -64,10 +66,17 @@ function App() {
       <div onClick={downloadPDF} className="button">
         Download Authorization Form
       </div>
-      {window.navigator.userAgent}
+      <div>Agent: {navigator.userAgent}</div>
+      <div>Platform: {navigator.platform}</div>
+      <div>Blob: {navigator.msSaveOrOpenBlob}</div>
+
 
       <div id="errorInfo">
         Error:  {errorInfo}
+      </div>
+
+      <div id="stack">
+        Stack:  {stackInfo}
       </div>
     </>
   );
