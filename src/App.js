@@ -7,6 +7,13 @@ function App() {
   const downloadPDF = async () => {
     try {
       var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
+
+      // the page is opened by Web View.
+      if (/wv/.test(navigator.userAgent)) {
+        window.open(apiURL);
+        return;
+      }
+
       let getWHeadersConfig = { responseType: "arraybuffer" }
       let response = await axios.get(apiURL, getWHeadersConfig)
       if (response && response.data) {
