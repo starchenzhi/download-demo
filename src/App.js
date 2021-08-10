@@ -22,6 +22,8 @@ function App() {
           window.open(apiURL);
           setActionType("open in a new window.")
           return;
+        } else if (navigator.userAgent.includes("Walgreens") && navigator.userAgent.includes("Android")) {
+          window.open(apiURL);
         }
 
         // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
