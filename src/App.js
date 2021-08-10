@@ -24,6 +24,7 @@ function App() {
           return;
         } else if (navigator.userAgent.includes("Walgreens") && navigator.userAgent.includes("Android")) {
           window.open(apiURL);
+          setActionType("open in a new window. (new code)");
         }
 
         // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
