@@ -13,6 +13,12 @@ function App() {
     try {
       var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
 
+      if (navigator.userAgent.includes("Walgreens") && navigator.userAgent.includes("Android")) {
+        window.open(apiURL);
+        setActionType("open in a new window. (new code)");
+        return
+      }
+
       let getWHeadersConfig = { responseType: "arraybuffer" }
       let response = await axios.get(apiURL, getWHeadersConfig)
       if (response && response.data) {
@@ -22,9 +28,6 @@ function App() {
           window.open(apiURL);
           setActionType("open in a new window.")
           return;
-        } else if (navigator.userAgent.includes("Walgreens") && navigator.userAgent.includes("Android")) {
-          window.open(apiURL);
-          setActionType("open in a new window. (new code)");
         }
 
         // if (window.navigator && window.navigator.msSaveOrOpenBlob) {
@@ -74,7 +77,7 @@ function App() {
 
   return (
     <>
-      <p>this is my latest code (9:46pm)</p>
+      <p>this is my latest code (aug 12 8:50pm)</p>
       <div onClick={downloadPDF} className="button">
         Download Authorization Form
       </div>
