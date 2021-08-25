@@ -86,7 +86,7 @@ function App() {
       <button className="button" onClick={showPDF}>View PDF</button>
       {isShowPdf &&
         <div>
-          <embed src="https://download-demo.herokuapp.com/Consent.pdf" style={{ width: "100%", height: "500px" }} />
+          <embed src="https://download-demo.herokuapp.com/Consent.pdf#toolbar=1&statusbar=1&navpanes=1&scrollbars=1&view=auto" style={{ width: "100%", height: "500px" }} />
         </div>
       }
 
