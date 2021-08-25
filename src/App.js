@@ -9,11 +9,11 @@ function App() {
   const [stackInfo, setStackInfo] = useState('');
   const [actionType, setActionType] = useState('');
   const [isShowPdf, setIsShowPdf] = useState(false);
+  const [isDisplayPdf, setIsDisplayPdf] = useState(false);
+  const apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
 
   const downloadPDF = async () => {
     try {
-      var apiURL = "https://download-demo.herokuapp.com/Consent.pdf";
-
       if (navigator.userAgent.includes("Walgreens") && navigator.userAgent.includes("Android")) {
         window.open(apiURL);
         setActionType("open in a new window. (new code)");
@@ -80,13 +80,35 @@ function App() {
     setIsShowPdf(!isShowPdf);
   }
 
+  const displayPdf = () => {
+    setIsDisplayPdf(!isDisplayPdf);
+  }
+
   return (
     <>
-      <p>this is my latest code (Aug 25 2:08PM)</p>
-      <button className="button" onClick={showPDF}>View PDF</button>
+      <p>this is my latest code (Aug 25 7:08PM)</p>
+      <div>
+        <button className="button" onClick={displayPdf}>View PDF (Third-party library)</button>
+        {isDisplayPdf &&
+          <iframe
+            title="pdf"
+            width="100%"
+            height="500px"
+            src={`/pdfjs-2.9.359-dist/web/viewer.html?file=https://download-demo.herokuapp.com/Consent.pdf`}
+          />
+        }
+      </div>
+
+      <button className="button" onClick={showPDF}>View PDF (Embed)</button>
+      <div>* Work on desktop browsers, but on mobile browsers have issues (toolbar is not showing)</div>
       {isShowPdf &&
         <div>
-          <embed src="https://download-demo.herokuapp.com/Consent.pdf#toolbar=1&statusbar=1&navpanes=1&scrollbars=1&view=auto" style={{ width: "100%", height: "500px" }} />
+          <embed
+            alt="a PDF file"
+            aria-label="label"
+            src="https://download-demo.herokuapp.com/Consent.pdf#toolbar=1&statusbar=1&navpanes=1&scrollbars=1&view=fit"
+            type="application/pdf"
+            style={{ width: "100%", height: "500px" }} />
         </div>
       }
 
