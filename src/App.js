@@ -8,6 +8,7 @@ function App() {
   const [errorInfo, setErrorInfo] = useState('');
   const [stackInfo, setStackInfo] = useState('');
   const [actionType, setActionType] = useState('');
+  const [isShowPdf, setIsShowPdf] = useState(false);
 
   const downloadPDF = async () => {
     try {
@@ -75,10 +76,21 @@ function App() {
 
   }
 
+  const showPDF = () => {
+    setIsShowPdf(!isShowPdf);
+  }
+
   return (
     <>
-      <p>this is my latest code (aug 12 8:50pm)</p>
-      <div onClick={downloadPDF} className="button">
+      <p>this is my latest code (Aug 25 2:08PM)</p>
+      <button className="button" onClick={showPDF}>View PDF</button>
+      {isShowPdf &&
+        <div>
+          <embed src="https://download-demo.herokuapp.com/Consent.pdf" style={{ width: "100%", height: "500px" }} />
+        </div>
+      }
+
+      <div onClick={downloadPDF} className="button" style={{ marginTop: "10px" }}>
         Download Authorization Form
       </div>
       <div>Agent: {navigator.userAgent}</div>
