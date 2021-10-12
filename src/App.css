@@ -10,3 +10,8 @@
   margin-top: 10px;
   color: red;
 }
+
+.p {
+  color: red;
+  display: inline;
+}

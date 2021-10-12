@@ -2,5 +2,6 @@
   "app_title": "标题",
   "language": "语言",
   "welcome_message": "欢迎",
-  "days_since_release": "离视频发布过去了{{number_of_days}}"
+  "days_since_release": "离视频发布过去了{{number_of_days}}天啦！",
+  "google": "您好，点击此处查看 <1><0>google</0></1>。 您可以获得更多信息。"
 }

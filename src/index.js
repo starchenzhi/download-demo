@@ -14,7 +14,10 @@ i18next
   .init({
     supportedLngs: ['en', 'es', 'zh'],
     fallbackLng: 'en',
-    debug: false,
+    debug: true,
+    interpolation: {
+      escapeValue: false // React already safes from XSS
+    },
     // Options for language detector
     detection: {
       order: ['querystring', 'cookie', 'path', 'htmlTag'], //order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],

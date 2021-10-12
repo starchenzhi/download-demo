@@ -1,6 +1,7 @@
 {
-  "app_title": "aaaa",
-  "language": "bbbb",
-  "welcome_message": "cccc",
-  "days_since_release": "离视频发布过去了{{number_of_days}}"
+  "app_title": "Título",
+  "language": "Idioma",
+  "welcome_message": "Bienvenida",
+  "days_since_release": "Han pasado {{number_of_days}} días desde que se lanzó este video",
+  "google": "Hola: Haga clic aquí para ver <1><2> google </2></1>. Puede obtener más información."
 }
